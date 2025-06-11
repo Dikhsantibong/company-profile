@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useLanguage } from "@/context/language-context";
 import {
   CodeBracketIcon,
   VideoCameraIcon,
@@ -111,6 +112,8 @@ const team = [
 ];
 
 export default function Home() {
+  const { t } = useLanguage();
+  
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Handle form submission
@@ -138,7 +141,7 @@ export default function Home() {
             >
               Creative Tech –{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">
-                Web, Animation & Digital Marketing
+                {t("hero.title")}
               </span>
             </motion.h1>
 
@@ -146,8 +149,7 @@ export default function Home() {
               variants={fadeInUp}
               className="text-xl sm:text-2xl text-gray-300 max-w-2xl mx-auto"
             >
-              Transform your digital presence with cutting-edge solutions that drive
-              growth and innovation.
+              {t("hero.subtitle")}
             </motion.p>
 
             <motion.div variants={fadeInUp} className="flex justify-center gap-4">
@@ -159,7 +161,7 @@ export default function Home() {
                   document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
                 }}
               >
-                Let's Collaborate
+                {t("hero.cta.collaborate")}
               </motion.button>
               <motion.button
                 whileHover={{ scale: 1.05 }}
@@ -169,7 +171,7 @@ export default function Home() {
                   document.getElementById("portfolio")?.scrollIntoView({ behavior: "smooth" });
                 }}
               >
-                View Portfolio
+                {t("hero.cta.portfolio")}
               </motion.button>
             </motion.div>
           </motion.div>
@@ -190,14 +192,13 @@ export default function Home() {
               variants={fadeInUp}
               className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white"
             >
-              Our Services
+              {t("services.title")}
             </motion.h2>
             <motion.p
               variants={fadeInUp}
               className="text-xl text-gray-600 dark:text-gray-400"
             >
-              We offer comprehensive digital solutions to help your business thrive
-              in the modern world.
+              {t("services.subtitle")}
             </motion.p>
           </motion.div>
 
@@ -225,10 +226,10 @@ export default function Home() {
                   </div>
                   <div className="flex-1">
                     <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                      {service.title}
+                      {t(`services.${service.title.toLowerCase()}.title`)}
                     </h3>
                     <p className="text-gray-600 dark:text-gray-400">
-                      {service.description}
+                      {t(`services.${service.title.toLowerCase()}.description`)}
                     </p>
                   </div>
                 </div>
@@ -252,14 +253,13 @@ export default function Home() {
               variants={fadeInUp}
               className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white"
             >
-              Our Portfolio
+              {t("portfolio.title")}
             </motion.h2>
             <motion.p
               variants={fadeInUp}
               className="text-xl text-gray-600 dark:text-gray-400"
             >
-              Explore our latest projects and creative works that showcase our
-              expertise.
+              {t("portfolio.subtitle")}
             </motion.p>
           </motion.div>
 
@@ -314,14 +314,13 @@ export default function Home() {
               variants={fadeInUp}
               className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white"
             >
-              About Creative Tech
+              {t("about.title")}
             </motion.h2>
             <motion.p
               variants={fadeInUp}
               className="text-xl text-gray-600 dark:text-gray-400"
             >
-              We are a team of passionate creators and innovators dedicated to
-              bringing your digital vision to life.
+              {t("about.subtitle")}
             </motion.p>
           </motion.div>
 
@@ -334,17 +333,13 @@ export default function Home() {
           >
             <motion.div variants={fadeInUp} className="space-y-6">
               <h3 className="text-3xl font-bold text-gray-900 dark:text-white">
-                Our Story
+                {t("about.story.title")}
               </h3>
               <p className="text-gray-600 dark:text-gray-400">
-                Founded in 2020, Creative Tech has grown from a small startup to a
-                full-service digital agency. We believe in combining creativity with
-                technical excellence to deliver exceptional results for our clients.
+                {t("about.story.p1")}
               </p>
               <p className="text-gray-600 dark:text-gray-400">
-                Our mission is to help businesses thrive in the digital age by
-                providing innovative solutions that drive growth and create lasting
-                impact.
+                {t("about.story.p2")}
               </p>
             </motion.div>
             <motion.div
@@ -410,13 +405,13 @@ export default function Home() {
               variants={fadeInUp}
               className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white"
             >
-              Get in Touch
+              {t("contact.title")}
             </motion.h2>
             <motion.p
               variants={fadeInUp}
               className="text-xl text-gray-600 dark:text-gray-400"
             >
-              Have a project in mind? We'd love to hear from you.
+              {t("contact.subtitle")}
             </motion.p>
           </motion.div>
 
@@ -438,7 +433,7 @@ export default function Home() {
                     htmlFor="name"
                     className="block text-sm font-medium text-gray-700 dark:text-gray-300"
                   >
-                    Name
+                    {t("contact.form.name")}
                   </label>
                   <input
                     type="text"
@@ -454,7 +449,7 @@ export default function Home() {
                     htmlFor="email"
                     className="block text-sm font-medium text-gray-700 dark:text-gray-300"
                   >
-                    Email
+                    {t("contact.form.email")}
                   </label>
                   <input
                     type="email"
@@ -470,7 +465,7 @@ export default function Home() {
                     htmlFor="message"
                     className="block text-sm font-medium text-gray-700 dark:text-gray-300"
                   >
-                    Message
+                    {t("contact.form.message")}
                   </label>
                   <textarea
                     id="message"
@@ -487,7 +482,7 @@ export default function Home() {
                   type="submit"
                   className="w-full px-8 py-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                 >
-                  Send Message
+                  {t("contact.form.submit")}
                 </motion.button>
               </motion.form>
             </motion.div>
@@ -501,7 +496,7 @@ export default function Home() {
             >
               <motion.div variants={fadeInUp}>
                 <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                  Contact Information
+                  {t("contact.info.title")}
                 </h3>
                 <div className="space-y-6">
                   <div className="flex items-start space-x-4">
@@ -510,7 +505,7 @@ export default function Home() {
                     </div>
                     <div>
                       <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
-                        Email
+                        {t("contact.info.email")}
                       </h4>
                       <p className="text-gray-600 dark:text-gray-400">
                         hello@creativetech.com
@@ -524,7 +519,7 @@ export default function Home() {
                     </div>
                     <div>
                       <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
-                        Phone
+                        {t("contact.info.phone")}
                       </h4>
                       <p className="text-gray-600 dark:text-gray-400">
                         +1 (555) 123-4567
@@ -538,7 +533,7 @@ export default function Home() {
                     </div>
                     <div>
                       <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
-                        Office
+                        {t("contact.info.office")}
                       </h4>
                       <p className="text-gray-600 dark:text-gray-400">
                         123 Innovation Street
@@ -554,12 +549,12 @@ export default function Home() {
 
               <motion.div variants={fadeInUp}>
                 <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                  Business Hours
+                  {t("contact.hours.title")}
                 </h3>
                 <div className="space-y-2 text-gray-600 dark:text-gray-400">
-                  <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
-                  <p>Saturday: 10:00 AM - 4:00 PM</p>
-                  <p>Sunday: Closed</p>
+                  <p>{t("contact.hours.weekday")}</p>
+                  <p>{t("contact.hours.saturday")}</p>
+                  <p>{t("contact.hours.sunday")}</p>
                 </div>
               </motion.div>
             </motion.div>

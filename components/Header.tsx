@@ -2,15 +2,16 @@
 
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
-import { SunIcon, MoonIcon } from "@heroicons/react/24/outline";
+import { SunIcon, MoonIcon, LanguageIcon } from "@heroicons/react/24/outline";
 import { motion } from "framer-motion";
+import { useLanguage } from "@/context/language-context";
 
 const navLinks = [
-  { href: "#home", label: "Home" },
-  { href: "#services", label: "Services" },
-  { href: "#portfolio", label: "Portfolio" },
-  { href: "#about", label: "About" },
-  { href: "#contact", label: "Contact" },
+  { href: "#home", label: "nav.home" },
+  { href: "#services", label: "nav.services" },
+  { href: "#portfolio", label: "nav.portfolio" },
+  { href: "#about", label: "nav.about" },
+  { href: "#contact", label: "nav.contact" },
 ];
 
 export default function Header() {
@@ -18,6 +19,7 @@ export default function Header() {
   const { theme, setTheme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
     setMounted(true);
@@ -58,6 +60,10 @@ export default function Header() {
     }
   };
 
+  const toggleLanguage = () => {
+    setLanguage(language === "en" ? "id" : "en");
+  };
+
   return (
     <header
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
@@ -86,12 +92,20 @@ export default function Header() {
                     : "text-gray-700 hover:text-blue-600 dark:text-gray-200 dark:hover:text-blue-400"
                 }`}
               >
-                {link.label}
+                {t(link.label)}
               </button>
             ))}
           </nav>
 
           <div className="flex items-center space-x-4">
+            <button
+              onClick={toggleLanguage}
+              className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200"
+              aria-label="Toggle language"
+            >
+              <span className="text-sm font-medium">{language.toUpperCase()}</span>
+            </button>
+
             <button
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200"
@@ -110,7 +124,7 @@ export default function Header() {
               onClick={() => scrollToSection("contact")}
               className="hidden sm:block px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
             >
-              Let's Collaborate
+              {t("nav.collaborate")}
             </motion.button>
           </div>
         </div>
