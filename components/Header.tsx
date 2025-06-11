@@ -65,20 +65,20 @@ export default function Header() {
   };
 
   return (
-    <header
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm shadow-sm"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 sm:h-20">
+    <header className="fixed top-0 w-full z-50 px-4">
+      <div
+        className={`mx-auto max-w-6xl transition-all duration-300 px-4 ${
+          isScrolled
+            ? "mt-4 bg-white/10 backdrop-blur-md border border-white/10 shadow-lg rounded-2xl"
+            : "bg-transparent"
+        }`}
+      >
+        <div className="flex items-center justify-between h-16 sm:h-20 px-6">
           <button
             onClick={() => scrollToSection("home")}
-            className="text-2xl font-bold text-gray-900 dark:text-white"
+            className="text-2xl font-bold text-white"
           >
-            Creative<span className="text-blue-600">Tech</span><span>.</span>
+            Creative<span className="text-blue-400">Tech</span><span>.</span>
           </button>
 
           <nav className="hidden md:flex items-center space-x-8">
@@ -88,8 +88,8 @@ export default function Header() {
                 onClick={() => scrollToSection(link.href.substring(1))}
                 className={`text-sm font-medium transition-colors ${
                   activeSection === link.href.substring(1)
-                    ? "text-blue-600 dark:text-blue-400"
-                    : "text-gray-700 hover:text-blue-600 dark:text-gray-200 dark:hover:text-blue-400"
+                    ? "text-blue-400"
+                    : "text-gray-200 hover:text-blue-400"
                 }`}
               >
                 {t(link.label)}
@@ -100,7 +100,7 @@ export default function Header() {
           <div className="flex items-center space-x-4">
             <button
               onClick={toggleLanguage}
-              className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200"
+              className="p-2 rounded-xl bg-white/10 backdrop-blur-sm border border-white/10 text-white hover:bg-white/20 transition-colors"
               aria-label="Toggle language"
             >
               <span className="text-sm font-medium">{language.toUpperCase()}</span>
@@ -108,7 +108,7 @@ export default function Header() {
 
             <button
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200"
+              className="p-2 rounded-xl bg-white/10 backdrop-blur-sm border border-white/10 text-white hover:bg-white/20 transition-colors"
               aria-label="Toggle theme"
             >
               {mounted && theme === "dark" ? (
@@ -122,7 +122,7 @@ export default function Header() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => scrollToSection("contact")}
-              className="hidden sm:block px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              className="hidden sm:block px-6 py-2.5 text-sm font-medium text-white bg-blue-600/90 backdrop-blur-sm rounded-xl hover:bg-blue-600 border border-blue-500/50 transition-colors"
             >
               {t("nav.collaborate")}
             </motion.button>

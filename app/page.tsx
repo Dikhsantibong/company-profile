@@ -116,16 +116,16 @@ export default function Home() {
   
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
     console.log("Form submitted");
   };
 
   return (
-    <>
+    <div className="relative min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-blue-900 dark:from-gray-950 dark:via-gray-900 dark:to-blue-950">
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px] pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent pointer-events-none" />
+
       {/* Hero Section */}
-      <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-blue-900 dark:from-gray-950 dark:via-gray-900 dark:to-blue-950">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+      <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue-500/30 rounded-full blur-[120px]" />
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -179,8 +179,8 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-20 bg-gray-50 dark:bg-gray-900">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="services" className="relative py-20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -202,6 +202,7 @@ export default function Home() {
             </motion.p>
           </motion.div>
 
+          {/* Services Section Cards */}
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -214,21 +215,21 @@ export default function Home() {
                 key={service.title}
                 variants={fadeInUp}
                 whileHover={{ scale: 1.02 }}
-                className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow"
+                className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-all"
               >
                 <div className="flex items-start space-x-4">
                   <div
-                    className={`p-3 rounded-xl bg-${service.color}-100 dark:bg-${service.color}-900/20`}
+                    className={`p-3 rounded-xl bg-${service.color}-500/20`}
                   >
                     <service.icon
-                      className={`w-8 h-8 text-${service.color}-600 dark:text-${service.color}-400`}
+                      className={`w-8 h-8 text-${service.color}-400`}
                     />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                    <h3 className="text-xl font-semibold text-white mb-2">
                       {t(`services.${service.title.toLowerCase()}.title`)}
                     </h3>
-                    <p className="text-gray-600 dark:text-gray-400">
+                    <p className="text-gray-300">
                       {t(`services.${service.title.toLowerCase()}.description`)}
                     </p>
                   </div>
@@ -240,8 +241,8 @@ export default function Home() {
       </section>
 
       {/* Portfolio Section */}
-      <section id="portfolio" className="py-20 bg-white dark:bg-gray-800">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="portfolio" className="relative py-20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -263,6 +264,7 @@ export default function Home() {
             </motion.p>
           </motion.div>
 
+          {/* Portfolio Grid */}
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -275,10 +277,10 @@ export default function Home() {
                 key={project.id}
                 variants={fadeInUp}
                 whileHover={{ scale: 1.02 }}
-                className="group relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
+                className="group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden hover:bg-white/10 transition-all"
               >
                 <div className="relative h-64 w-full">
-                  <div className="absolute inset-0 bg-gray-900/20 group-hover:bg-gray-900/40 transition-colors z-10" />
+                  <div className="absolute inset-0 bg-gray-900/40 group-hover:bg-gray-900/20 transition-colors z-10" />
                   <Image
                     src={project.image}
                     alt={project.title}
@@ -287,10 +289,10 @@ export default function Home() {
                   />
                 </div>
                 <div className="p-6">
-                  <span className="text-sm font-medium text-blue-600 dark:text-blue-400">
+                  <span className="text-sm font-medium text-blue-400">
                     {project.category}
                   </span>
-                  <h3 className="mt-2 text-xl font-semibold text-gray-900 dark:text-white">
+                  <h3 className="mt-2 text-xl font-semibold text-white">
                     {project.title}
                   </h3>
                 </div>
@@ -301,8 +303,8 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 bg-gray-50 dark:bg-gray-900">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="about" className="relative py-20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -392,8 +394,8 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 bg-white dark:bg-gray-800">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="contact" className="relative py-20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -416,12 +418,13 @@ export default function Home() {
           </motion.div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {/* Contact Form */}
             <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
               variants={stagger}
-              className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg"
+              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8"
             >
               <motion.form
                 variants={fadeInUp}
@@ -431,7 +434,7 @@ export default function Home() {
                 <div>
                   <label
                     htmlFor="name"
-                    className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                    className="block text-sm font-medium text-gray-300"
                   >
                     {t("contact.form.name")}
                   </label>
@@ -440,14 +443,14 @@ export default function Home() {
                     id="name"
                     name="name"
                     required
-                    className="mt-1 block w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="mt-1 block w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   />
                 </div>
 
                 <div>
                   <label
                     htmlFor="email"
-                    className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                    className="block text-sm font-medium text-gray-300"
                   >
                     {t("contact.form.email")}
                   </label>
@@ -456,14 +459,14 @@ export default function Home() {
                     id="email"
                     name="email"
                     required
-                    className="mt-1 block w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="mt-1 block w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   />
                 </div>
 
                 <div>
                   <label
                     htmlFor="message"
-                    className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                    className="block text-sm font-medium text-gray-300"
                   >
                     {t("contact.form.message")}
                   </label>
@@ -472,7 +475,7 @@ export default function Home() {
                     name="message"
                     rows={6}
                     required
-                    className="mt-1 block w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="mt-1 block w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   ></textarea>
                 </div>
 
@@ -487,80 +490,73 @@ export default function Home() {
               </motion.form>
             </motion.div>
 
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={stagger}
-              className="space-y-8"
-            >
-              <motion.div variants={fadeInUp}>
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                  {t("contact.info.title")}
-                </h3>
-                <div className="space-y-6">
-                  <div className="flex items-start space-x-4">
-                    <div className="p-3 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-                      <EnvelopeIcon className="w-6 h-6 text-blue-600 dark:text-blue-400" />
-                    </div>
-                    <div>
-                      <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
-                        {t("contact.info.email")}
-                      </h4>
-                      <p className="text-gray-600 dark:text-gray-400">
-                        hello@creativetech.com
-                      </p>
-                    </div>
+            {/* Contact Info */}
+            <motion.div variants={fadeInUp}>
+              <h3 className="text-2xl font-bold text-white mb-6">
+                {t("contact.info.title")}
+              </h3>
+              <div className="space-y-6">
+                <div className="flex items-start space-x-4">
+                  <div className="p-3 bg-blue-500/20 rounded-lg">
+                    <EnvelopeIcon className="w-6 h-6 text-blue-400" />
                   </div>
-
-                  <div className="flex items-start space-x-4">
-                    <div className="p-3 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-                      <PhoneIcon className="w-6 h-6 text-blue-600 dark:text-blue-400" />
-                    </div>
-                    <div>
-                      <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
-                        {t("contact.info.phone")}
-                      </h4>
-                      <p className="text-gray-600 dark:text-gray-400">
-                        +1 (555) 123-4567
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start space-x-4">
-                    <div className="p-3 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-                      <MapPinIcon className="w-6 h-6 text-blue-600 dark:text-blue-400" />
-                    </div>
-                    <div>
-                      <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
-                        {t("contact.info.office")}
-                      </h4>
-                      <p className="text-gray-600 dark:text-gray-400">
-                        123 Innovation Street
-                        <br />
-                        Tech City, TC 12345
-                        <br />
-                        United States
-                      </p>
-                    </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-white">
+                      {t("contact.info.email")}
+                    </h4>
+                    <p className="text-gray-300">
+                      hello@creativetech.com
+                    </p>
                   </div>
                 </div>
-              </motion.div>
 
-              <motion.div variants={fadeInUp}>
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                  {t("contact.hours.title")}
-                </h3>
-                <div className="space-y-2 text-gray-600 dark:text-gray-400">
-                  <p>{t("contact.hours.weekday")}</p>
-                  <p>{t("contact.hours.saturday")}</p>
-                  <p>{t("contact.hours.sunday")}</p>
+                <div className="flex items-start space-x-4">
+                  <div className="p-3 bg-blue-500/20 rounded-lg">
+                    <PhoneIcon className="w-6 h-6 text-blue-400" />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-white">
+                      {t("contact.info.phone")}
+                    </h4>
+                    <p className="text-gray-300">
+                      +1 (555) 123-4567
+                    </p>
+                  </div>
                 </div>
-              </motion.div>
+
+                <div className="flex items-start space-x-4">
+                  <div className="p-3 bg-blue-500/20 rounded-lg">
+                    <MapPinIcon className="w-6 h-6 text-blue-400" />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-white">
+                      {t("contact.info.office")}
+                    </h4>
+                    <p className="text-gray-300">
+                      123 Innovation Street
+                      <br />
+                      Tech City, TC 12345
+                      <br />
+                      United States
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div variants={fadeInUp}>
+              <h3 className="text-2xl font-bold text-white mb-4">
+                {t("contact.hours.title")}
+              </h3>
+              <div className="space-y-2 text-gray-300">
+                <p>{t("contact.hours.weekday")}</p>
+                <p>{t("contact.hours.saturday")}</p>
+                <p>{t("contact.hours.sunday")}</p>
+              </div>
             </motion.div>
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }
