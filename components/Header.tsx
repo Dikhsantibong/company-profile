@@ -8,9 +8,9 @@ import { useLanguage } from "@/context/language-context";
 
 const navLinks = [
   { href: "#home", label: "nav.home" },
+  { href: "#about", label: "nav.about" },
   { href: "#services", label: "nav.services" },
   { href: "#portfolio", label: "nav.portfolio" },
-  { href: "#about", label: "nav.about" },
   { href: "#contact", label: "nav.contact" },
 ];
 

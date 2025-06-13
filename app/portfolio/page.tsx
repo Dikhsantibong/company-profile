@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import GradientText from "@/components/GradientText";
 
 const projects = [
   {
@@ -79,16 +80,20 @@ export default function PortfolioPage() {
         >
           <motion.h1
             variants={fadeInUp}
-            className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white"
+            className="text-4xl sm:text-5xl font-bold"
           >
-            Our Portfolio
+            <GradientText colors={["#60A5FA", "#7C3AED", "#2563EB"]}>
+              Our Portfolio
+            </GradientText>
           </motion.h1>
           <motion.p
             variants={fadeInUp}
-            className="text-xl text-gray-600 dark:text-gray-400"
+            className="text-xl"
           >
-            Explore our latest projects and creative works that showcase our
-            expertise.
+            <GradientText colors={["#9CA3AF", "#D1D5DB"]}>
+              Explore our latest projects and creative works that showcase our
+              expertise.
+            </GradientText>
           </motion.p>
         </motion.div>
 
@@ -117,11 +122,15 @@ export default function PortfolioPage() {
                   />
                 </div>
                 <div className="p-6">
-                  <span className="text-sm font-medium text-blue-600 dark:text-blue-400">
-                    {project.category}
+                  <span className="text-sm font-medium">
+                    <GradientText colors={["#3B82F6", "#60A5FA"]}>
+                      {project.category}
+                    </GradientText>
                   </span>
-                  <h3 className="mt-2 text-xl font-semibold text-gray-900 dark:text-white">
-                    {project.title}
+                  <h3 className="mt-2 text-xl font-semibold">
+                    <GradientText colors={["#60A5FA", "#7C3AED"]}>
+                      {project.title}
+                    </GradientText>
                   </h3>
                   <div className="mt-4 flex items-center text-blue-600 dark:text-blue-400">
                     <span className="text-sm font-medium">View Project</span>
@@ -144,6 +153,13 @@ export default function PortfolioPage() {
             </motion.div>
           ))}
         </motion.div>
+
+        {/* CTA Section */}
+        <h2 className="text-2xl sm:text-3xl font-bold mb-4">
+          <GradientText colors={["#60A5FA", "#7C3AED"]}>
+            Ready to Start Your Project?
+          </GradientText>
+        </h2>
       </div>
     </div>
   );

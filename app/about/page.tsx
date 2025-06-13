@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import GradientText from "@/components/GradientText";
 
 const team = [
   {
@@ -56,16 +57,20 @@ export default function AboutPage() {
         >
           <motion.h1
             variants={fadeInUp}
-            className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white"
+            className="text-4xl sm:text-5xl font-bold"
           >
-            About Creative Tech
+            <GradientText colors={["#60A5FA", "#7C3AED", "#2563EB"]}>
+              About Creative Tech
+            </GradientText>
           </motion.h1>
           <motion.p
             variants={fadeInUp}
-            className="text-xl text-gray-600 dark:text-gray-400"
+            className="text-xl"
           >
-            We are a team of passionate creators and innovators dedicated to
-            bringing your digital vision to life.
+            <GradientText colors={["#9CA3AF", "#D1D5DB"]}>
+              We are a team of passionate creators and innovators dedicated to
+              bringing your digital vision to life.
+            </GradientText>
           </motion.p>
         </motion.div>
 
@@ -77,18 +82,24 @@ export default function AboutPage() {
           className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20"
         >
           <motion.div variants={fadeInUp} className="space-y-6">
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
-              Our Story
+            <h2 className="text-3xl font-bold">
+              <GradientText colors={["#60A5FA", "#7C3AED"]}>
+                Our Story
+              </GradientText>
             </h2>
-            <p className="text-gray-600 dark:text-gray-400">
-              Founded in 2020, Creative Tech has grown from a small startup to a
-              full-service digital agency. We believe in combining creativity with
-              technical excellence to deliver exceptional results for our clients.
+            <p className="text-gray-600">
+              <GradientText colors={["#9CA3AF", "#D1D5DB"]}>
+                Founded in 2020, Creative Tech has grown from a small startup to a
+                full-service digital agency. We believe in combining creativity with
+                technical excellence to deliver exceptional results for our clients.
+              </GradientText>
             </p>
-            <p className="text-gray-600 dark:text-gray-400">
-              Our mission is to help businesses thrive in the digital age by
-              providing innovative solutions that drive growth and create lasting
-              impact.
+            <p className="text-gray-600">
+              <GradientText colors={["#9CA3AF", "#D1D5DB"]}>
+                Our mission is to help businesses thrive in the digital age by
+                providing innovative solutions that drive growth and create lasting
+                impact.
+              </GradientText>
             </p>
           </motion.div>
           <motion.div
@@ -112,12 +123,16 @@ export default function AboutPage() {
           className="space-y-12"
         >
           <motion.div variants={fadeInUp} className="text-center">
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-              Meet Our Team
+            <h2 className="text-3xl font-bold mb-4">
+              <GradientText colors={["#60A5FA", "#7C3AED"]}>
+                Meet Our Team
+              </GradientText>
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-              Our talented team of professionals brings diverse skills and
-              experience to every project.
+            <p className="text-xl">
+              <GradientText colors={["#9CA3AF", "#D1D5DB"]}>
+                Our talented team of professionals brings diverse skills and
+                experience to every project.
+              </GradientText>
             </p>
           </motion.div>
 
@@ -162,9 +177,11 @@ export default function AboutPage() {
         >
           <motion.h2
             variants={fadeInUp}
-            className="text-3xl font-bold text-gray-900 dark:text-white mb-12"
+            className="text-3xl font-bold mb-12"
           >
-            Our Values
+            <GradientText colors={["#60A5FA", "#7C3AED"]}>
+              Our Values
+            </GradientText>
           </motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <motion.div
@@ -172,10 +189,14 @@ export default function AboutPage() {
               className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg"
             >
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-                Innovation
+                <GradientText colors={["#60A5FA", "#7C3AED"]}>
+                  Innovation
+                </GradientText>
               </h3>
               <p className="text-gray-600 dark:text-gray-400">
-                We constantly push boundaries and embrace new technologies.
+                <GradientText colors={["#9CA3AF", "#D1D5DB"]}>
+                  We constantly push boundaries and embrace new technologies.
+                </GradientText>
               </p>
             </motion.div>
             <motion.div

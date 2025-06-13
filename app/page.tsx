@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { useLanguage } from "@/context/language-context";
 import ScrollVelocity from "@/components/ScrollVelocity";
+import GlassIcons, { GlassIconsItem } from "@/components/GlassIcons";
+import Ballpit from "@/components/Ballpit";
 import {
   CodeBracketIcon,
   VideoCameraIcon,
@@ -13,6 +15,8 @@ import {
   PhoneIcon,
   MapPinIcon,
 } from "@heroicons/react/24/outline";
+import { FaLinkedin, FaInstagram, FaWhatsapp } from "react-icons/fa";
+import GradientText from "@/components/GradientText";
 
 // Animation variants
 const fadeInUp = {
@@ -94,21 +98,57 @@ const team = [
     name: "Dikhsan Dwirangga Tibong",
     role: "CEO & Founder",
     image: "/images/team/team-1.png",
+    borderColor: "#4F46E5",
+    gradient: "linear-gradient(145deg,#4F46E5,#000)",
+    handle: "@dikhsan"
   },
   {
     name: "Diki Ardikawiratama",
     role: "Commissioner/Founder",
     image: "/images/team/team-3.png",
+    borderColor: "#10B981",
+    gradient: "linear-gradient(210deg,#10B981,#000)",
+    handle: "@diki"
   },
   {
     name: "Chalifahdien Hamud",
     role: "General Manager",
     image: "/images/team/team-4.png",
+    borderColor: "#F59E0B",
+    gradient: "linear-gradient(165deg,#F59E0B,#000)",
+    handle: "@chalifa"
   },
   {
     name: "Febri Nusa Bakti",
     role: "Creative Lead",
     image: "/images/team/team-2.png",
+    borderColor: "#8B5CF6",
+    gradient: "linear-gradient(225deg,#8B5CF6,#000)",
+    handle: "@febri"
+  },
+];
+
+// Add social icons data
+const socialIcons: GlassIconsItem[] = [
+  {
+    icon: <FaLinkedin className="w-6 h-6 text-white" />,
+    color: "blue",
+    label: "LinkedIn",
+  },
+  {
+    icon: <FaInstagram className="w-6 h-6 text-white" />,
+    color: "purple",
+    label: "Instagram",
+  },
+  {
+    icon: <EnvelopeIcon className="w-6 h-6 text-white" />,
+    color: "red",
+    label: "Email",
+  },
+  {
+    icon: <FaWhatsapp className="w-6 h-6 text-white" />,
+    color: "green",
+    label: "WhatsApp",
   },
 ];
 
@@ -138,19 +178,23 @@ export default function Home() {
           >
             <motion.h1
               variants={fadeInUp}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white max-w-4xl mx-auto leading-tight"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold max-w-4xl mx-auto leading-tight"
             >
-              Creative Tech –{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">
-                {t("hero.title")}
-              </span>
+              <GradientText colors={["#60A5FA", "#7C3AED", "#2563EB"]}>
+                Creative Tech –{" "}
+                <span>
+                  {t("hero.title")}
+                </span>
+              </GradientText>
             </motion.h1>
 
             <motion.p
               variants={fadeInUp}
-              className="text-xl sm:text-2xl text-gray-300 max-w-2xl mx-auto"
+              className="text-xl sm:text-2xl"
             >
-              {t("hero.subtitle")}
+              <GradientText colors={["#9CA3AF", "#D1D5DB"]}>
+                {t("hero.subtitle")}
+              </GradientText>
             </motion.p>
 
             <motion.div variants={fadeInUp} className="flex justify-center gap-4">
@@ -206,15 +250,19 @@ export default function Home() {
           >
             <motion.h2
               variants={fadeInUp}
-              className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white"
+              className="text-4xl sm:text-5xl font-bold"
             >
-              {t("about.title")}
+              <GradientText colors={["#60A5FA", "#7C3AED"]}>
+                {t("about.title")}
+              </GradientText>
             </motion.h2>
             <motion.p
               variants={fadeInUp}
-              className="text-xl text-gray-600 dark:text-gray-400"
+              className="text-xl"
             >
-              {t("about.subtitle")}
+              <GradientText colors={["#9CA3AF", "#D1D5DB"]}>
+                {t("about.subtitle")}
+              </GradientText>
             </motion.p>
           </motion.div>
 
@@ -249,37 +297,55 @@ export default function Home() {
             </motion.div>
           </motion.div>
 
+          {/* Team Section */}
           <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
             variants={stagger}
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
           >
-            {team.map((member) => (
-              <motion.div
+            {team.map((member, i) => (
+              <motion.article
                 key={member.name}
                 variants={fadeInUp}
-                whileHover={{ scale: 1.02 }}
-                className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg"
+                onMouseMove={(e) => {
+                  const c = e.currentTarget;
+                  const rect = c.getBoundingClientRect();
+                  c.style.setProperty("--mouse-x", `${e.clientX - rect.left}px`);
+                  c.style.setProperty("--mouse-y", `${e.clientY - rect.top}px`);
+                }}
+                className="group relative flex flex-col w-full rounded-[20px] overflow-hidden border-2 border-transparent transition-colors duration-300 cursor-pointer"
+                style={{
+                  "--card-border": member.borderColor || "transparent",
+                  background: member.gradient,
+                  "--spotlight-color": "rgba(255,255,255,0.3)",
+                } as React.CSSProperties}
               >
-                <div className="relative h-64 w-full">
-                  <Image
-                    src={member.image}
-                    alt={member.name}
-                    fill
-                    className="object-cover"
-                  />
+                <div
+                  className="absolute inset-0 pointer-events-none transition-opacity duration-500 z-20 opacity-0 group-hover:opacity-100"
+                  style={{
+                    background:
+                      "radial-gradient(circle at var(--mouse-x) var(--mouse-y), var(--spotlight-color), transparent 70%)",
+                  }}
+                />
+                <div className="relative z-10 flex-1 p-[10px] box-border">
+                  <div className="relative w-full pt-[100%]">
+                    <Image
+                      src={member.image}
+                      alt={member.name}
+                      fill
+                      className="absolute top-0 left-0 w-full h-full object-cover rounded-[10px]"
+                    />
+                  </div>
                 </div>
-                <div className="p-6 text-center">
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                    {member.name}
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-400 mt-1">
-                    {member.role}
-                  </p>
-                </div>
-              </motion.div>
+                <footer className="relative z-10 p-3 text-white font-sans grid grid-cols-[1fr_auto] gap-x-3 gap-y-1">
+                  <h3 className="m-0 text-[1.05rem] font-semibold">{member.name}</h3>
+                  {member.handle && (
+                    <span className="text-[0.95rem] opacity-80 text-right">
+                      {member.handle}
+                    </span>
+                  )}
+                  <p className="m-0 text-[0.85rem] opacity-85">{member.role}</p>
+                </footer>
+              </motion.article>
             ))}
           </motion.div>
         </div>
@@ -298,15 +364,19 @@ export default function Home() {
           >
             <motion.h2
               variants={fadeInUp}
-              className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white"
+              className="text-4xl sm:text-5xl font-bold"
             >
-              {t("services.title")}
+              <GradientText colors={["#60A5FA", "#7C3AED"]}>
+                {t("services.title")}
+              </GradientText>
             </motion.h2>
             <motion.p
               variants={fadeInUp}
-              className="text-xl text-gray-600 dark:text-gray-400"
+              className="text-xl"
             >
-              {t("services.subtitle")}
+              <GradientText colors={["#9CA3AF", "#D1D5DB"]}>
+                {t("services.subtitle")}
+              </GradientText>
             </motion.p>
           </motion.div>
 
@@ -360,15 +430,19 @@ export default function Home() {
           >
             <motion.h2
               variants={fadeInUp}
-              className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white"
+              className="text-4xl sm:text-5xl font-bold"
             >
-              {t("portfolio.title")}
+              <GradientText colors={["#60A5FA", "#7C3AED"]}>
+                {t("portfolio.title")}
+              </GradientText>
             </motion.h2>
             <motion.p
               variants={fadeInUp}
-              className="text-xl text-gray-600 dark:text-gray-400"
+              className="text-xl"
             >
-              {t("portfolio.subtitle")}
+              <GradientText colors={["#9CA3AF", "#D1D5DB"]}>
+                {t("portfolio.subtitle")}
+              </GradientText>
             </motion.p>
           </motion.div>
 
@@ -412,8 +486,19 @@ export default function Home() {
 
     
       {/* Contact Section */}
-      <section id="contact" className="relative py-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <section id="contact" className="relative min-h-screen">
+        {/* Background Animation - Full Screen */}
+        <div className="absolute inset-0">
+          <Ballpit
+            className="w-full h-full"
+            followCursor={true}
+            count={150}
+            colors={[0x4299e1, 0x9f7aea, 0xed64a6]}
+          />
+        </div>
+
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 min-h-screen flex flex-col justify-center">
+          {/* Header Title & Subtitle */}
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -423,158 +508,57 @@ export default function Home() {
           >
             <motion.h2
               variants={fadeInUp}
-              className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white"
+              className="text-4xl sm:text-5xl font-bold"
             >
-              {t("contact.title")}
+              <GradientText colors={["#60A5FA", "#7C3AED"]}>
+                {t("contact.title")}
+              </GradientText>
             </motion.h2>
             <motion.p
               variants={fadeInUp}
-              className="text-xl text-gray-600 dark:text-gray-400"
+              className="text-xl"
             >
-              {t("contact.subtitle")}
+              <GradientText colors={["#9CA3AF", "#D1D5DB"]}>
+                {t("contact.subtitle")}
+              </GradientText>
             </motion.p>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Contact Form */}
+          {/* Contact Card */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={stagger}
+            className="w-full max-w-7xl mx-auto"
+          >
             <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={stagger}
-              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8"
+              variants={fadeInUp}
+              className="bg-white/10 backdrop-blur-lg rounded-3xl w-full shadow-2xl border border-white/20 flex flex-col md:flex-row items-center justify-between px-10 py-12 gap-10"
             >
-              <motion.form
-                variants={fadeInUp}
-                onSubmit={handleSubmit}
-                className="space-y-6"
-              >
-                <div>
-                  <label
-                    htmlFor="name"
-                    className="block text-sm font-medium text-gray-300"
-                  >
-                    {t("contact.form.name")}
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    required
-                    className="mt-1 block w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  />
-                </div>
+              {/* Kiri: Text */}
+              <div className="flex-1 text-left">
+                <h3 className="text-3xl font-bold text-white mb-3">
+                  {t("contact.info.title")}
+                </h3>
+                <p className="text-gray-200">{t("contact.subtitle")}</p>
+              </div>
 
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-medium text-gray-300"
-                  >
-                    {t("contact.form.email")}
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    className="mt-1 block w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  />
-                </div>
+              {/* Tengah: Icons */}
+              <div className="flex-[2]">
+                <GlassIcons items={socialIcons} />
+              </div>
 
-                <div>
-                  <label
-                    htmlFor="message"
-                    className="block text-sm font-medium text-gray-300"
-                  >
-                    {t("contact.form.message")}
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows={6}
-                    required
-                    className="mt-1 block w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  ></textarea>
-                </div>
-
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  type="submit"
-                  className="w-full px-8 py-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                >
-                  {t("contact.form.submit")}
-                </motion.button>
-              </motion.form>
-            </motion.div>
-
-            {/* Contact Info */}
-            <motion.div variants={fadeInUp}>
-              <h3 className="text-2xl font-bold text-white mb-6">
-                {t("contact.info.title")}
-              </h3>
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="p-3 bg-blue-500/20 rounded-lg">
-                    <EnvelopeIcon className="w-6 h-6 text-blue-400" />
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-semibold text-white">
-                      {t("contact.info.email")}
-                    </h4>
-                    <p className="text-gray-300">
-                      hello@creativetech.com
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4">
-                  <div className="p-3 bg-blue-500/20 rounded-lg">
-                    <PhoneIcon className="w-6 h-6 text-blue-400" />
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-semibold text-white">
-                      {t("contact.info.phone")}
-                    </h4>
-                    <p className="text-gray-300">
-                      +1 (555) 123-4567
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4">
-                  <div className="p-3 bg-blue-500/20 rounded-lg">
-                    <MapPinIcon className="w-6 h-6 text-blue-400" />
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-semibold text-white">
-                      {t("contact.info.office")}
-                    </h4>
-                    <p className="text-gray-300">
-                      123 Innovation Street
-                      <br />
-                      Tech City, TC 12345
-                      <br />
-                      United States
-                    </p>
-                  </div>
-                </div>
+              {/* Kanan: Contact Info */}
+              <div className="flex-1 text-right text-gray-200">
+                <p className="mb-2">hello@creativetech.com</p>
+                <p>+1 (555) 123-4567</p>
               </div>
             </motion.div>
-
-            <motion.div variants={fadeInUp}>
-              <h3 className="text-2xl font-bold text-white mb-4">
-                {t("contact.hours.title")}
-              </h3>
-              <div className="space-y-2 text-gray-300">
-                <p>{t("contact.hours.weekday")}</p>
-                <p>{t("contact.hours.saturday")}</p>
-                <p>{t("contact.hours.sunday")}</p>
-              </div>
-            </motion.div>
-          </div>
+          </motion.div>
         </div>
       </section>
+
     </div>
   );
 }

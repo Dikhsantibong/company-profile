@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { CodeBracketIcon, VideoCameraIcon, CubeIcon, MegaphoneIcon } from "@heroicons/react/24/outline";
+import GradientText from "@/components/GradientText";
 
 const services = [
   {
@@ -60,16 +61,20 @@ export default function ServicesPage() {
         >
           <motion.h1
             variants={fadeInUp}
-            className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white"
+            className="text-4xl sm:text-5xl font-bold"
           >
-            Our Services
+            <GradientText colors={["#60A5FA", "#7C3AED", "#2563EB"]}>
+              Our Services
+            </GradientText>
           </motion.h1>
           <motion.p
             variants={fadeInUp}
-            className="text-xl text-gray-600 dark:text-gray-400"
+            className="text-xl"
           >
-            We offer comprehensive digital solutions to help your business thrive in
-            the modern world.
+            <GradientText colors={["#9CA3AF", "#D1D5DB"]}>
+              We offer comprehensive digital solutions to help your business thrive in
+              the modern world.
+            </GradientText>
           </motion.p>
         </motion.div>
 
@@ -96,11 +101,15 @@ export default function ServicesPage() {
                   />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                    {service.title}
+                  <h3 className="text-xl font-semibold mb-2">
+                    <GradientText colors={["#60A5FA", "#7C3AED"]}>
+                      {service.title}
+                    </GradientText>
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-400">
-                    {service.description}
+                  <p>
+                    <GradientText colors={["#9CA3AF", "#D1D5DB"]}>
+                      {service.description}
+                    </GradientText>
                   </p>
                   <button className="mt-4 text-blue-600 dark:text-blue-400 font-medium hover:underline">
                     Learn more →
@@ -118,8 +127,10 @@ export default function ServicesPage() {
           transition={{ delay: 0.5 }}
           className="mt-16 text-center"
         >
-          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">
-            Ready to Start Your Project?
+          <h2 className="text-2xl sm:text-3xl font-bold mb-4">
+            <GradientText colors={["#60A5FA", "#7C3AED"]}>
+              Ready to Start Your Project?
+            </GradientText>
           </h2>
           <button className="px-8 py-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
             Get in Touch
